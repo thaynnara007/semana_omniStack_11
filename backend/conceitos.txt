@@ -1,0 +1,85 @@
+const express = require('express')
+const app = express()
+
+app.use(express.json())
+
+/**
+ * Rota / recursos
+ */
+
+/**
+ * Metodos HTTP:
+ * 
+ * GET: buscar uma informação no back-end
+ * POST: criar uma informação no back-end
+ * PUT: alterar uma informação no back-end
+ * DELETE: deletar uma informação no back-end
+ */
+
+/**
+ * Tipos de parâmetros:
+ * 
+ * Query params: 
+ *  - parâmetro  nomeados enviados na rota da requisição. exemplo:
+ *  - /user?name=Diego (busca os usuarios cujo nome é Diego)
+ *  - geralmente usado em filtros, pesquisas, paginação
+ *  - /user?page=2&name=Diego
+ * 
+ * Route params:
+ *  - parâmetros utilizados para identificar recursos
+ *  - exemplo:
+ *      - /user/1
+ *      - /user/Diego
+ * 
+ * Request params:
+ *  - é o corpo da requisição, geralmente usado em post e put
+ */
+
+
+// QUERY PARAMS
+app.get('/usersQuery', (req, res) => {
+    const params = req.query
+
+    console.log(params)
+
+    return res.json({
+        mensagem: "query params",
+        params: params
+    })
+})
+
+// ROUTE PARAMS
+app.get('/users/:id', (req, res) => {
+    const params = req.params
+
+    console.log(params)
+
+    return res.json({
+        mensagem: "route params",
+        params: params
+    })
+})
+
+// REQUEST BODY
+app.post('/users', (req, res) => {
+    const body = req.body
+
+    console.log(body)
+
+    return res.json({
+        mensagem: "route params",
+        params: body
+    })
+})
+app.listen(3333)
+
+/**
+ * NODE
+ * 
+ * npm é o comando de instalação de pacotes
+ * npm install <pacote> -D, instala o pacote nas devDependencies, que sao aquelas
+ * dependencias usadas apenas no desenvolvido, logo nao sao necessarias no ambiente
+ * de produção
+ * 
+ * npx é o comando de execução dos pacotes 
+ */
